@@ -23,10 +23,10 @@ public class pacienteDAO {
             stmt.setString(6, p.getDiagnostico());
             stmt.executeUpdate();
 
-            System.out.println("✔ Paciente insertado correctamente");
+            System.out.println("Paciente insertado correctamente");
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al insertar paciente");
+            System.out.println(" Error al insertar paciente");
             e.printStackTrace();
         }
     }
@@ -34,7 +34,7 @@ public class pacienteDAO {
     // SELECT - listar todos
     public List<Paciente> listar() {
         List<Paciente> lista = new ArrayList<>();
-        String sql = "SELECT * FROM paciente";
+        String sql = "SELECT * FROM pacientes";
 
         try (Connection conn = conexion.obtenerConexion();
              Statement stmt = conn.createStatement();
@@ -54,7 +54,7 @@ public class pacienteDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al listar pacientes");
+            System.out.println("Error al listar pacientes");
             e.printStackTrace();
         }
 
@@ -63,7 +63,7 @@ public class pacienteDAO {
 
     // SELECT - obtener por ID
     public Paciente obtenerPorId(int id) {
-        String sql = "SELECT * FROM paciente WHERE id = ?";
+        String sql = "SELECT * FROM pacientes WHERE id = ?";
 
         try (Connection conn = conexion.obtenerConexion();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -84,7 +84,7 @@ public class pacienteDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al obtener paciente por ID");
+            System.out.println("Error al obtener paciente por ID");
             e.printStackTrace();
         }
 
@@ -93,7 +93,7 @@ public class pacienteDAO {
 
     // UPDATE
     public void actualizar(Paciente p) {
-        String sql = "UPDATE paciente SET nombre = ?, edad = ?, sexo = ?, tipo_sangre = ?, alergias = ?, diagnostico = ? WHERE id = ?";
+        String sql = "UPDATE pacientes SET nombre = ?, edad = ?, sexo = ?, tipo_sangre = ?, alergias = ?, diagnostico = ? WHERE id = ?";
 
         try (Connection conn = conexion.obtenerConexion();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -107,17 +107,17 @@ public class pacienteDAO {
             stmt.setInt(7, p.getId());
             stmt.executeUpdate();
 
-            System.out.println("✔ Paciente actualizado correctamente");
+            System.out.println("Paciente actualizado correctamente");
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al actualizar paciente");
+            System.out.println(" Error al actualizar paciente");
             e.printStackTrace();
         }
     }
 
     // DELETE
     public void eliminar(int id) {
-        String sql = "DELETE FROM paciente WHERE id = ?";
+        String sql = "DELETE FROM pacientes WHERE id = ?";
 
         try (Connection conn = conexion.obtenerConexion();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -125,12 +125,11 @@ public class pacienteDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
 
-            System.out.println("✔ Paciente eliminado correctamente");
+            System.out.println("Paciente eliminado correctamente");
 
         } catch (SQLException e) {
-            System.out.println("❌ Error al eliminar paciente");
+            System.out.println("Error al eliminar paciente");
             e.printStackTrace();
         }
     }
 }
-
